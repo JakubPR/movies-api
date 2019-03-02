@@ -25,8 +25,8 @@ class MoviesController extends AbstractController
 
     /**
      * @Rest\View(statusCode=201)
-     * @ParamConverter("movie", converter="fos_rest.request_body")
      * @Rest\NoRoute()
+     * @ParamConverter("movie", converter="fos_rest.request_body")
      */
     public function putMovieAction(Movie $movie)
     {
