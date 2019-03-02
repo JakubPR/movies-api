@@ -960,7 +960,7 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="241" parent="2" name="movies">
+    <table id="241" parent="2" name="movie">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
     <table id="242" parent="2" name="person">
