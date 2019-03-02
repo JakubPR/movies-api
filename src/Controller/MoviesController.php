@@ -7,6 +7,7 @@ use FOS\RestBundle\Controller\ControllerTrait;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
 class MoviesController extends AbstractController
 {
@@ -42,7 +43,7 @@ class MoviesController extends AbstractController
     public function deleteMovieAction(?Movie $movie)
     {
         if (null === $movie) {
-            return $this->view(null, \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+            return $this->view(null, Response::HTTP_NOT_FOUND);
         }
         $em = $this->getDoctrine()->getManager();
         $em->remove($movie);
@@ -55,7 +56,7 @@ class MoviesController extends AbstractController
     public function getMovieAction(?Movie $movie)
     {
         if (null === $movie) {
-            return $this->view(null, \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+            return $this->view(null, Response::HTTP_NOT_FOUND);
         }
         return $movie;
     }
