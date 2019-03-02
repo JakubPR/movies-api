@@ -26,12 +26,37 @@ class MoviesController extends AbstractController
      * @Rest\View(statusCode=201)
      * @ParamConverter("movie", converter="fos_rest.request_body")
      * @Rest\NoRoute()
-     * @param Movie $movie
      */
     public function putMovieAction(Movie $movie)
     {
         $em = $this->getDoctrine()->getManager();
         $em->persist($movie);
         $em->flush();
+
+        return $movie;
+    }
+
+    /**
+     * @Rest\View()
+     */
+    public function deleteMovieAction(?Movie $movie)
+    {
+        if (null === $movie) {
+            return $this->view(null, \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($movie);
+        $em->flush();
+    }
+
+    /**
+     * @Rest\View()
+     */
+    public function getMovieAction(?Movie $movie)
+    {
+        if (null === $movie) {
+            return $this->view(null, \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+        }
+        return $movie;
     }
 }
