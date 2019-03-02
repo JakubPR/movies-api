@@ -991,7 +991,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="241" name="decription">
+    <column id="247" parent="241" name="description">
       <Position>5</Position>
       <DataType>longtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>

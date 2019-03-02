@@ -34,7 +34,7 @@ class Movie
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $decription;
+    private $description;
 
     public function getId(): ?int
     {
@@ -77,14 +77,14 @@ class Movie
         return $this;
     }
 
-    public function getDecription(): ?string
+    public function getDescription(): ?string
     {
-        return $this->decription;
+        return $this->description;
     }
 
-    public function setDecription(?string $decription): self
+    public function setDescription(?string $description): self
     {
-        $this->decription = $decription;
+        $this->description = $description;
 
         return $this;
     }

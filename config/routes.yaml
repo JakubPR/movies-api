@@ -5,3 +5,10 @@
 movies:
     type: rest
     resource: App\Controller\MoviesController
+
+put_movie:
+    path: /movie
+    methods: [PUT]
+    defaults:
+        _controller: App\Controller\MoviesController:putMovieAction
+        _format: json
