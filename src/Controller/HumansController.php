@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Controller;
+use App\Entity\Person;
+use App\Exception\ValidationException;
+use FOS\RestBundle\Controller\ControllerTrait;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
+
+class HumansController extends AbstractController
+{
+    use ControllerTrait;
+
+    /**
+     * @Resr\View()
+     */
+    public function getHumansAction()
+    {
+        $people = $this->getDoctrine()->getRepository(Person::class)->findAll();
+
+        return $people;
+    }
+
+    /**
+     * @Rest/View(StatusCode=201)
+     * @ParamConverter("person", converter="fos_rest.request_body")
+     * @Rest\NoRoute()
+     */
+    public function postHumanAction(Person $person, ConstraintViolationListInterface $validationErrors)
+    {
+        if (count($validationErrors) > 0) {
+            throw new ValidationException($validationErrors);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($person);
+        $em->flush();
+    }
+
+
+}
