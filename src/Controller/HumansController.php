@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Person;
 use App\Exception\ValidationException;
 use FOS\RestBundle\Controller\ControllerTrait;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +16,7 @@ class HumansController extends AbstractController
     use ControllerTrait;
 
     /**
-     * @Resr\View()
+     * @Rest\View()
      */
     public function getHumansAction()
     {
@@ -24,11 +26,11 @@ class HumansController extends AbstractController
     }
 
     /**
-     * @Rest/View(StatusCode=201)
+     * @Rest\View(StatusCode=201)
      * @ParamConverter("person", converter="fos_rest.request_body")
      * @Rest\NoRoute()
      */
-    public function postHumanAction(Person $person, ConstraintViolationListInterface $validationErrors)
+    public function putHumanAction(Person $person, ConstraintViolationListInterface $validationErrors)
     {
         if (count($validationErrors) > 0) {
             throw new ValidationException($validationErrors);

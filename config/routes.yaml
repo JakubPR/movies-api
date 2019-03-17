@@ -12,3 +12,14 @@ put_movie:
     defaults:
         _controller: App\Controller\MoviesController:putMovieAction
         _format: json
+
+humans:
+    type: rest
+    resource: App\Controller\HumansController
+
+put_human:
+    path: /human
+    methods: [PUT]
+    defaults:
+        _controller: App\Controller\HumanController:putHumanAction
+        _format: json
