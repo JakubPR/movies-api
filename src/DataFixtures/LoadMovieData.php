@@ -6,7 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Movie;
 
-class AppFixtures extends Fixture
+class LoadMovieData extends Fixture
 {
     public function load(ObjectManager $manager)
     {
