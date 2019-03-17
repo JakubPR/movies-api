@@ -6,6 +6,7 @@ use App\Exception\ValidationException;
 use FOS\RestBundle\Controller\ControllerTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class HumansController extends AbstractController
@@ -38,5 +39,29 @@ class HumansController extends AbstractController
         $em->flush();
     }
 
+    /**
+     * @Rest\View()
+     */
+    public function deleteHumanAction(?Person $person)
+    {
+        if (null === $person) {
+            return $this->view(null, Response::HTTP_NOT_FOUND);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($person);
+        $em->flush();
+    }
+
+    /**
+     * @Rest\View()
+     */
+    public function getHumanAction(?Person $person)
+    {
+        if (null === $person) {
+            return $this->view(null, Response::HTTP_NOT_FOUND);
+        }
+        return $person;
+    }
 
 }
