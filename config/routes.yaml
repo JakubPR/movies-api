@@ -21,5 +21,5 @@ put_human:
     path: /human
     methods: [PUT]
     defaults:
-        _controller: App\Controller\HumanController:putHumanAction
+        _controller: App\Controller\HumansController:putHumanAction
         _format: json

@@ -27,8 +27,8 @@ class HumansController extends AbstractController
 
     /**
      * @Rest\View(StatusCode=201)
-     * @ParamConverter("person", converter="fos_rest.request_body")
      * @Rest\NoRoute()
+     * @ParamConverter("person", converter="fos_rest.request_body")
      */
     public function putHumanAction(Person $person, ConstraintViolationListInterface $validationErrors)
     {
@@ -39,6 +39,8 @@ class HumansController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($person);
         $em->flush();
+
+        return $person;
     }
 
     /**
